@@ -1,7 +1,7 @@
 
 
-Åpne terminalen og kjør følgene kommandoer, en om gangen:
+Åpne terminalen og kjør følgene kommandoer, én om gangen:
 
-  git config --global user.email "you@example.com"
+  git config --global user.email "bruker@stud.ntnu.no"
 
-  git config --global user.name "Your Name"
+  git config --global user.name "Ditt navn"
