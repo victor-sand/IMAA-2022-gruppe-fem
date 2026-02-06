@@ -32,6 +32,9 @@ Dvs. `C:\Users\...\...\...\IMAA-2022-GRUPPE-FEM>`
                                                    ^^^^^^^^^^^^^^^^^  
 Dere kan komme hit ved å skrive `cd "C:\Users\...\...\...\IMAA-2022-GRUPPE-FEM"` i terminalen
 
+Jeg anbefaler også å laste ned [Warp](https://www.warp.dev/download). En terminal med innebygd AI.  
+Her kan du skrive f.eks. "Plasser meg i mappa: IMAA-2022-GRUPPE-FEM", så vil den fikse det for deg
+
 #### Noen kommandoer dere kan kjøre i terminalen  
 
 * `git fetch` - Sjekk om det har blitt gjort endringer i GitHub
@@ -42,9 +45,13 @@ Dere kan komme hit ved å skrive `cd "C:\Users\...\...\...\IMAA-2022-GRUPPE-FEM"
 * `git restore --staged test.py` - Fjern fil fra _staging_
     * _Staging_ brukes for å gruppere flere filer bak _én_ commit  
 
-* `git commit -m "..."` - Alle filer i _staging_ blir lagret i git (lokalt ***ikke*** i GitHub)
+* `git commit -m "..."` - Alle filer i _staging_ blir lagret i git (lokalt, ***ikke*** i GitHub)
     * git **krever** at du skriver en log av hva du har endret f.eks. `git commit -m "la til f_dx(x)"`, hold det kort 
     * git ≠ GitHub. Husk du måtte laste ned git, git er et program for versjonskontroll som kjører lokalt på PC'en din.
     * GitHub er en nettside/server som _hoster_ koden og gjør det mulig for andre å hente _commits_ fra _din_ git til _deres_
 * `git reset HEAD~1` - Angre forrige commit | prøv å unngå å bruke denne
 * `git push` - Last opp alle _commits_ til GitHub
+
+<br>
+
+Ved spørsmål, spør: YouTube, ChatGPT eller meg(Victor)
