@@ -29,7 +29,7 @@ Her kan dere bruke git kommandoer.
 
 Dere kan også bruke den '_vanlige_' terminalen, men må da passe på at _adressa_ stemmer.  
 Dvs. `C:\Users\...\...\...\IMAA-2022-GRUPPE-FEM>`  
-                                                    ^^^^^^^^^^^^^^^^^^^^  
+                                                   ^^^^^^^^^^^^^^^^^  
 Dere kan komme hit ved å skrive `cd "C:\Users\...\...\...\IMAA-2022-GRUPPE-FEM"` i terminalen
 
 #### Noen kommandoer dere kan kjøre i terminalen  
