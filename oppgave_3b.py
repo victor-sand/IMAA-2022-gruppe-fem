@@ -15,4 +15,5 @@ for it in range(5000):
 a = x - np.cos(np.pi*x)/np.pi**2 + 1-1/np.pi**2
 plt.plot(x,u)
 plt.plot(x,a)
+plt.grid(True)
 plt.show()
