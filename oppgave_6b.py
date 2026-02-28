@@ -1,69 +1,46 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# FYSISKE PARAMETERE
-alpha = 9.3e-6   # termisk diffusivitet
+nodes = 100
+lx = 0.25
+ly = 0.25
+alpha = 9.3e-6
 
-# GEOMETRI
-Lx = 0.25   # bredde i meter
-Ly = 0.25   # høyde i meter
+dx = lx / nodes
+dy = ly / nodes
 
-# DISKRETISERING
-Nx = 60
-Ny = 60
+dt = 0.9 / (2 * alpha * (1 / dx ** 2 + 1 / dy ** 2))
+T = 20 * 60
+nt = int(T / dt)
 
-dx = Lx / Nx
-dy = Ly / Ny
+x = np.linspace(0, lx, nodes)
+y = np.linspace(0, ly, nodes)
 
-# Stabilitet
-dt = 0.25 * min(dx, dy)**2 / alpha
+u = np.ones((nodes, nodes)) * 15
 
-# Antall tidsskritt
-Nt = 2000
+u[0, :] = 200
+u[-1, :] = 200
+u[:, 0] = 200
+u[:, -1] = 200
 
-# INITIALBETINGELSE
-u = np.ones((Nx+1, Ny+1)) * 15.0   # 15 grader i hele legemet
-
-# RANDBETINGELSER
-def apply_boundary(u):
-    u[0, :] = 200
-    u[-1, :] = 200
-    u[:, 0] = 200
-    u[:, -1] = 200
-    return u
-
-u = apply_boundary(u)
-
-# LAGRING AV RESULTATER FOR PLOTTING
-times_to_plot = [0, 200, 800, 2000]
-solutions = {}
-
-# TIDSLØKKE
-for n in range(Nt+1):
+for _ in range(nt):
     u_new = u.copy()
 
-    # Indre punkter
-    for i in range(1, Nx):
-        for j in range(1, Ny):
-            u_new[i, j] = (
-                u[i, j]
-                + alpha * dt * (
-                    (u[i+1, j] - 2*u[i, j] + u[i-1, j]) / dx**2 +
-                    (u[i, j+1] - 2*u[i, j] + u[i, j-1]) / dy**2
-                )
-            )
+    u_new[1:-1, 1:-1] = u[1:-1, 1:-1] + dt * alpha * (
+            (u[1:-1, 2:] - 2 * u[1:-1, 1:-1] + u[1:-1, :-2]) / dx ** 2 +
+            (u[2:, 1:-1] - 2 * u[1:-1, 1:-1] + u[:-2, 1:-1]) / dy ** 2
+    )
 
-    u = apply_boundary(u_new)
+    u = u_new
 
-    if n in times_to_plot:
-        solutions[n] = u.copy()
-# PLOTTING
-fig, axes = plt.subplots(1, len(times_to_plot), figsize=(15, 4))
+# 3D plot
+X, Y = np.meshgrid(x, y)
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+surf = ax.plot_surface(X, Y, u, cmap='viridis')
+fig.colorbar(surf)
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_zlabel('Temperatur')
 
-for ax, t in zip(axes, times_to_plot):
-    im = ax.imshow(solutions[t].T, origin='lower', cmap='jet',
-                   extent=[0, Lx, 0, Ly])
-    ax.set_title(f"t = {t*dt:.2f} s")
-    plt.colorbar(im, ax=ax)
-plt.tight_layout()
 plt.show()
