@@ -9,7 +9,6 @@ alpha_titan = 9.3e-6
 alpha_air = 4.8e-5
 start_temp = 15
 oven_temp = 200
-minutes = 1
 
 dx = lx / nodes
 dy = ly / nodes
@@ -26,8 +25,6 @@ alpha_field[
 alpha_max = max(alpha_titan, alpha_air)
 
 dt = 0.9 / (2 * alpha_max * (1/dx**2 + 1/dy**2))
-T = minutes * 60
-nt = int(T / dt)
 
 x = np.linspace(0, lx, nodes)
 y = np.linspace(0, ly, nodes)
